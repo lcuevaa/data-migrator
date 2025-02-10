@@ -2,10 +2,10 @@ from database.sql_server import fetch_sql_data
 from database.postgres import insert_postgres_data
 
 def migrate_empresas():
-    print("Iniciando la migracion de la tabla EMPRESAS")
+    print("Iniciando la migracion de la VISTA de EMPRESAS")
     
     # Consulta de datos en sql server
-    sql_query = "SELECT * FROM EMPRESAS"
+    sql_query = "SELECT * FROM VIEW_EMPRESAS"
     rows = fetch_sql_data(sql_query)
     
     if not rows:
@@ -17,36 +17,10 @@ def migrate_empresas():
     insert_query ="""
         INSERT INTO empresas (
             EmpresaId, 
-            NroRuc, 
-            RazonSocial,
-            Direccion,
-            Telefono,
-            Fax,
-            Estado,
-            CreadoPor,
-            FechaCreacion,
-            ModificadoPor,
-            FechaModificacion,
-            CodigoMigracion,
-            AgentePercepcion,
-            CtaContableDebe,
-            CtaContableHaber,
-            Siglas,
-            Email,
-            Departamento,
-            Provincia,
-            Distrito,
-            EmailContacto,
-            NombreComercial,
             TDIdentificacionId,
-            EmailFE,
-            CodigoProveedor1,
-            CodigoProveedor2,
-            CodigoProveedor3,
-            CodigoProveedor4,
-            Urbanizacion,
-            ExoneracionIGV,
-            ArchivoLogo)
+            NroRuc,
+            RazonSocial,
+            Direccion)
         VALUES %s
         ON CONFLICT (EmpresaId) DO NOTHING
     """

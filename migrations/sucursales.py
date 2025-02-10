@@ -2,10 +2,10 @@ from database.sql_server import fetch_sql_data
 from database.postgres import insert_postgres_data
 
 def migrate_sucursales():
-    print("Migrando vista SUCURSALES...")
+    print("Migrando vista PUNTO DE EMISION (SUCURSALES)...")
 
     # Consulta de datos en SQL Server
-    sql_query = "SELECT * FROM VIEW_SUCURSALES"
+    sql_query = "SELECT * FROM VIEW_PUNTOEMISION"
     rows = fetch_sql_data(sql_query)
 
     if not rows:
@@ -14,12 +14,18 @@ def migrate_sucursales():
 
     # Inserción en PostgreSQL
     insert_query = """
-        INSERT INTO sucursales (
-            EmpresaId, SucursalId,  RazonSocial, NombreComercial, CodigoSucursal,
-            CodEmpresa, Direccion, CodSucursal, EsPuntoVenta, Siglas, NroRuc, Estado
+        INSERT INTO puntoemision (
+            punto_emision_id,
+            codigo_sunat,
+            empresa,
+            nombre_punto_emision,
+            direccion,
+            departamento,
+            provincia,
+            distrito
         )
         VALUES %s
-        ON CONFLICT (SucursalId) DO NOTHING
+        ON CONFLICT (punto_emision_id) DO NOTHING
     """
     inserted_count = insert_postgres_data(insert_query, rows)
 
