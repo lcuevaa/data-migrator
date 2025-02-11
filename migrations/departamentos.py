@@ -1,29 +1,25 @@
 from database.sql_server import fetch_sql_data
 from database.postgres import insert_postgres_data
 
-def migrate_empresas():
-    print("Iniciando la migracion de la VISTA de EMPRESAS")
+def migrate_departamentos():
+    print("Iniciando la migracion de la VISTA de Departamentos")
     
     # Consulta de datos en sql server
-    sql_query = "SELECT * FROM VIEW_EMPRESAS"
+    sql_query = "SELECT * FROM VIEW_DEPARTAMENTOS"
     rows = fetch_sql_data(sql_query)
     
     if not rows:
         print("No se encontraron datos nuevos para migrar")
         return
     
-    
     # Insersion de los datos en postgres
     
     insert_query ="""
-        INSERT INTO empresas (
-            empresa_id, 
-            tipo_identificacion,
-            nro_identificacion,
-            razon_social,
-            direccion)
+        INSERT INTO departamentos (
+            departamento_id,
+            departamento_nombre)
         VALUES %s
-        ON CONFLICT (empresa_id) DO NOTHING
+        ON CONFLICT (departamento_id) DO NOTHING
     """
     # Llamar a la función de inserción y capturar el número de filas insertadas
     inserted_count =  insert_postgres_data(insert_query, rows)

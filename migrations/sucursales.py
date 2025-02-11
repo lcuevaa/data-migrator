@@ -14,7 +14,7 @@ def migrate_sucursales():
 
     # Inserción en PostgreSQL
     insert_query = """
-        INSERT INTO puntoemision (
+        INSERT INTO puntos_emision (
             punto_emision_id,
             codigo_sunat,
             empresa,

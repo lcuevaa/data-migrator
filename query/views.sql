@@ -1,8 +1,13 @@
-CREATE VIEW VIEW_PUNTOEMISION
+ALTER VIEW VIEW_PUNTOEMISION
 AS
-	SELECT  s.SucursalId, 
+	SELECT  
+			RIGHT('0000' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS VARCHAR(4)), 4) AS SucursalId,  -- Genera el id secuencial como CHAR(2)
 			s.CodigoPuntoEmisionSUNAT, 
-			s.EmpresaId, 
+			CASE
+				WHEN s.EmpresaId = 'CCD67845-E084-42C5-9294-A3CB750E3D26' THEN '01' 
+				WHEN s.EmpresaId = '3314E7F9-18F1-403C-9669-B7485D3D4C05' THEN '02' 
+				WHEN s.EmpresaId = 'B46F002A-0F6B-496C-9D09-F47F8E70B249' THEN '03'
+			END AS EmpresaId,
 			s.NombreComercial, 
 			s.Direccion, 
 			s.Departamento, 
@@ -11,15 +16,15 @@ AS
 	FROM SUCURSALES as s
 
 
-
-CREATE VIEW VIEW_EMPRESAS
-AS
-	SELECT	e.EmpresaId, 
-			e.TDIdentificacionId, 
-			e.NroRuc, 
-			e.RazonSocial, 
-			e.Direccion
-	FROM Empresas as e
+-- Vista empresas
+CREATE VIEW VIEW_EMPRESAS AS
+    SELECT 
+        RIGHT('00' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS VARCHAR(2)), 2) AS empresa_id,  -- Genera el id secuencial como CHAR(2)
+        '6' AS TDIdentificacionId,  -- Hardcodeamos el valor 6 como VARCHAR(2)
+        e.NroRuc,
+        e.RazonSocial,
+        e.Direccion
+    FROM Empresas AS e;
 
 CREATE VIEW VIEW_PRODUCTOS 
 AS
@@ -91,3 +96,38 @@ AS
 		Email_1
 	FROM           
 		dbo.CLIENTES
+
+
+-- Vistas de tipos de identificacion
+CREATE VIEW VIEW_TIPOS_IDENTIFICACION
+AS
+	SELECT t.TipoIdentificacion_Id, t.Nombre
+	FROM TIPOS_IDENTIFICACION AS t
+
+--Vistas de tipos de operacion
+ALTER VIEW VIEW_TIPOS_OPERACION
+AS
+	SELECT 
+		RIGHT('0000' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS VARCHAR(4)), 4) AS TipoOperacionId,  -- Genera el id secuencial como CHAR(2)
+		tipo.Nombre
+	FROM TIPOS_OPERACION AS tipo
+
+
+--Vistas de departamentos
+CREATE VIEW VIEW_DEPARTAMENTOS
+AS
+	SELECT d.Departamento, d.Nombre
+	FROM DEPARTAMENTOS AS d
+
+
+-- Vistas de provincias
+CREATE VIEW VIEW_PROVINCIAS
+AS
+	SELECT p.Provincia, p.Nombre, p.Departamento
+	FROM PROVINCIAS AS p
+
+-- Vistas de distritos
+CREATE VIEW VIEW_DISTRITOS
+AS
+	SELECT d.Distrito, d.Nombre, d.Departamento, d.Provincia
+	FROM DISTRITOS AS d

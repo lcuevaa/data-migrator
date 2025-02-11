@@ -24,25 +24,31 @@ CREATE TABLE tipos_documento_tributarios (
 );
 
 
-
+-- Tabla empresas
 CREATE TABLE empresas(
-	EmpresaId UUID PRIMARY KEY,
-	TDIdentificacionId UUID,
-	NroRuc VARCHAR(11),
-	RazonSocial VARCHAR(100) NOT NULL,
-	Direccion VARCHAR(100) NOT NULL
+	empresa_id CHAR(2) PRIMARY KEY,
+	tipo_identificacion VARCHAR(2) NOT NULL,
+	FOREIGN KEY (tipo_identificacion) REFERENCES tipos_identificacion(tipo_identificacion_id),
+	nro_identificacion VARCHAR(11),
+	razon_social VARCHAR(100) NOT NULL,
+	direccion VARCHAR(100) NOT NULL
 )
 
-CREATE TABLE puntoemision(
-	punto_emision_id UUID PRIMARY KEY,
+
+CREATE TABLE puntos_emision(
+	punto_emision_id CHAR(4) PRIMARY KEY,
 	codigo_sunat VARCHAR(4),
-	empresa UUID,
+	empresa CHAR(2) NOT NULL,
+	FOREIGN KEY (empresa) REFERENCES empresas(empresa_id),
 	nombre_punto_emision VARCHAR(100) NOT NULL,
 	direccion VARCHAR(100),
-	departamento INT,
-	provincia INT,
-	distrito INT
-)    
+	departamento CHAR(2) NOT NULL,
+	FOREIGN KEY (departamento) REFERENCES departamentos(departamento_id),
+	provincia CHAR(4) NOT NULL,
+	FOREIGN KEY (provincia) REFERENCES provincias(provincia_id),
+	distrito CHAR(6) NOT NULL,
+	FOREIGN KEY (distrito) REFERENCES distritos(distrito_id)
+) 
 
 CREATE TABLE productos (
     producto_id UUID PRIMARY KEY,
@@ -77,3 +83,38 @@ CREATE TABLE contribuyentes (
 );
 
 
+-- Tipos de identificacion
+CREATE TABLE tipos_identificacion(
+	tipo_identificacion_id VARCHAR(2) PRIMARY KEY,
+	tipo_identificacion_nombre VARCHAR(100)
+)
+
+-- Tipos de operacion
+CREATE TABLE tipos_operacion(
+	tipo_operacion_id CHAR(4) PRIMARY KEY,
+	tipo_operacion_nombre VARCHAR(100) NOT NULL
+)
+
+-- Departamentos
+CREATE TABLE departamentos(
+	departamento_id VARCHAR(2) PRIMARY KEY,
+	departamento_nombre VARCHAR(100) NOT NULL
+)
+
+-- Provincias
+CREATE TABLE provincias(
+	provincia_id VARCHAR(4) PRIMARY KEY,
+	provincia_nombre VARCHAR(100) NOT NULL,
+	departamento VARCHAR(2) NOT NULL,
+	FOREIGN KEY (departamento) REFERENCES departamentos(departamento_id)
+)
+
+-- Distritos
+CREATE TABLE distritos(
+	distrito_id VARCHAR(6) PRIMARY KEY,
+	distrito_nombre VARCHAR(100) NOT NULL,
+	departamento VARCHAR(2) NOT NULL,
+	FOREIGN KEY (departamento) REFERENCES departamentos(departamento_id),
+	provincia VARCHAR(4) NOT NULL,
+	FOREIGN KEY (provincia) REFERENCES provincias(provincia_id)
+)
