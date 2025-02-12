@@ -16,21 +16,19 @@ def migrate_data():
     
     # Migrar cada tabla/vista de forma independiente
     
-    
-    # migrate_productos()
-    # migrate_unidades_medida()
-    # migrate_tipo_afectacionIgv()
-    # migrate_forma_pago()
-    #migrate_tipos_documento_tributarios()
-    #migrate_contribuyentes () #aun falta crear la tabla en la bd
-    
+    migrate_tipo_afectacionIgv()
+    migrate_forma_pago()
+    migrate_unidades_medida()
+    migrate_tipos_documento_tributarios()
     migrate_tipos_identificacion()
     migrate_tipos_operacion()
     migrate_departamentos()
     migrate_provincias()
     migrate_distritos()
     migrate_empresas()
+    migrate_productos()
     migrate_sucursales()
-    
+    migrate_contribuyentes () #aun falta crear la tabla en la bd
+
     print("Migración de datos finalizada.")
 

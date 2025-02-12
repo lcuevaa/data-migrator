@@ -18,11 +18,11 @@ def migrate_productos():
             producto_id,
             producto_codigo,
             codigo_sunat,
-            empresa,
+            empresa_id,
             descripcion,
-            unidad,
+            unidad_id,
             peso,
-            tipo_afectacion
+            tipo_afectacion_id
         )
         VALUES %s
         ON CONFLICT (producto_id) DO NOTHING
