@@ -104,17 +104,17 @@ CREATE TABLE productos (
 
 -- FALTA CORREGIR
 CREATE TABLE contribuyentes (
-    contribuyente_id VARCHAR(10) PRIMARY KEY,
-    tipo_identificacion VARCHAR(2) NOT NULL,
+    contribuyente_id VARCHAR(15) PRIMARY KEY,
+    tipo_identificacion VARCHAR(3) NOT NULL,
 	FOREIGN KEY (tipo_identificacion) REFERENCES tipos_identificacion(tipo_identificacion_id),
-    nro_identificacion VARCHAR(11) NOT NULL,
+    nro_identificacion VARCHAR(11),
     nombre_contribuyente VARCHAR(150) NOT NULL,
-    direccion VARCHAR(150) NOT NULL,
-    departamento CHAR(2) NOT NULL,
+    direccion VARCHAR(150),
+    departamento CHAR(3),
 	FOREIGN KEY (departamento) REFERENCES departamentos(departamento_id),
-	provincia CHAR(4) NOT NULL,
+	provincia CHAR(4),
 	FOREIGN KEY (provincia) REFERENCES provincias(provincia_id),
-	distrito CHAR(6) NOT NULL,
+	distrito CHAR(6) ,
 	FOREIGN KEY (distrito) REFERENCES distritos(distrito_id),
     urbanizacion VARCHAR(100),
     email VARCHAR(100)

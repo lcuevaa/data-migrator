@@ -83,10 +83,10 @@ AS
 
 
 
-CREATE VIEW VIEW_CONTRIBUYENTE
+ALTER VIEW VIEW_CONTRIBUYENTE
 AS
 	SELECT 
-		RIGHT('0000000000' + CAST(ROW_NUMBER() OVER (ORDER BY ClienteId) AS VARCHAR(10)), 10) AS ClienteId,
+		Codigo,
 		TipoIdentificacion,
 		NroDocumento,
 		NombreCliente,
@@ -98,8 +98,7 @@ AS
 		Email_1
 	FROM           
 		dbo.CLIENTES
-
-
+		
 -- Vistas de tipos de identificacion
 CREATE VIEW VIEW_TIPOS_IDENTIFICACION
 AS

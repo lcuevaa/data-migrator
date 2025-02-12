@@ -21,9 +21,9 @@ def migrate_contribuyentes():
             nro_identificacion,
             nombre_contribuyente,
             direccion,
-            departamento_id,
-            provincia_id,
-            distrito_id ,
+            departamento,
+            provincia,
+            distrito,
             urbanizacion,
             email
             )
