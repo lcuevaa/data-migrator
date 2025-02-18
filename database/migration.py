@@ -11,35 +11,25 @@ from migrations.tipos_operacion import migrate_tipos_operacion
 from migrations.departamentos import migrate_departamentos
 from migrations.provincias import migrate_provincias
 from migrations.distritos import migrate_distritos
+
 def migrate_data():
-    print("Iniciando la migracion de datos...")
+    print("Iniciando la migración de datos...")
     
     # Migrar cada tabla/vista de forma independiente
     
-    # migrate_tipo_afectacionIgv()
-    # migrate_forma_pago()
-<<<<<<< HEAD
-    #migrate_tipos_documento_tributarios()
-    #migrate_contribuyentes () #aun falta crear la tabla en la bd
-    
-=======
-    # migrate_unidades_medida()
-    # migrate_tipos_documento_tributarios()
->>>>>>> 0270efcaeab4523f57690fedd1edd3a1291eeccb
-    # migrate_tipos_identificacion()
-    # migrate_tipos_operacion()
-    # migrate_departamentos()
-    # migrate_provincias()
-    # migrate_distritos()
-    # migrate_empresas()
-<<<<<<< HEAD
-    migrate_sucursales()
-    
-=======
-    migrate_productos()
-    # migrate_sucursales()
-    migrate_contribuyentes () #aun falta crear la tabla en la bd
+    # migraciones comentadas para que puedas decidir qué ejecutar
+    migrate_tipo_afectacionIgv()
+    migrate_forma_pago()
+    migrate_tipos_documento_tributarios()  # Comentado en ambos casos, pero puedes descomentarlo si lo deseas
+    migrate_contribuyentes()  # Faltaba crear la tabla en la bd
+    migrate_unidades_medida()
+    migrate_tipos_identificacion()
+    migrate_tipos_operacion()
+    migrate_departamentos()
+    migrate_provincias()
+    migrate_distritos()
+    migrate_empresas()
+    migrate_productos()  # Puede ser importante para tu flujo de migración
+    migrate_sucursales()  # Esta línea está en ambos bloques, por lo que no se pierde
 
->>>>>>> 0270efcaeab4523f57690fedd1edd3a1291eeccb
     print("Migración de datos finalizada.")
-
