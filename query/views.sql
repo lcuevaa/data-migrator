@@ -1,25 +1,23 @@
-ALTER VIEW VIEW_PUNTOEMISION
+CREATE VIEW VIEW_PUNTOEMISION
 AS
 	SELECT  
 			RIGHT('0000' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS VARCHAR(4)), 4) AS SucursalId,  -- Genera el id secuencial como CHAR(2)
 			s.CodigoPuntoEmisionSUNAT, 
-			CASE
-				WHEN s.EmpresaId = 'CCD67845-E084-42C5-9294-A3CB750E3D26' THEN '01' 
-				WHEN s.EmpresaId = '3314E7F9-18F1-403C-9669-B7485D3D4C05' THEN '02' 
-				WHEN s.EmpresaId = 'B46F002A-0F6B-496C-9D09-F47F8E70B249' THEN '03'
-			END AS EmpresaId,
+			e.CodigoMigracion,
 			s.NombreComercial, 
 			s.Direccion, 
 			s.Departamento, 
 			s.Provincia, 
 			s.Distrito
 	FROM SUCURSALES as s
+	JOIN EMPRESAS AS e
+	ON s.EmpresaId = e.EmpresaId
 
 
 -- Vista empresas
 CREATE VIEW VIEW_EMPRESAS AS
     SELECT 
-        RIGHT('00' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS VARCHAR(2)), 2) AS empresa_id,  -- Genera el id secuencial como CHAR(2)
+        e.CodigoMigracion,
         '6' AS TDIdentificacionId,  -- Hardcodeamos el valor 6 como VARCHAR(2)
         e.NroRuc,
         e.RazonSocial,

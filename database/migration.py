@@ -24,12 +24,12 @@ def migrate_data():
     #migrate_tipos_documento_tributarios()
     #migrate_contribuyentes () #aun falta crear la tabla en la bd
     
-    migrate_tipos_identificacion()
-    migrate_tipos_operacion()
-    migrate_departamentos()
-    migrate_provincias()
-    migrate_distritos()
-    migrate_empresas()
+    # migrate_tipos_identificacion()
+    # migrate_tipos_operacion()
+    # migrate_departamentos()
+    # migrate_provincias()
+    # migrate_distritos()
+    # migrate_empresas()
     migrate_sucursales()
     
     print("Migración de datos finalizada.")

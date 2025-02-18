@@ -30,25 +30,25 @@ CREATE TABLE empresas(
 	tipo_identificacion VARCHAR(2) NOT NULL,
 	FOREIGN KEY (tipo_identificacion) REFERENCES tipos_identificacion(tipo_identificacion_id),
 	nro_identificacion VARCHAR(11),
-	razon_social VARCHAR(100) NOT NULL,
-	direccion VARCHAR(100) NOT NULL
+	razon_social VARCHAR(150) NOT NULL,
+	direccion VARCHAR(200) NOT NULL
 )
 
 
 CREATE TABLE puntos_emision(
 	punto_emision_id CHAR(4) PRIMARY KEY,
 	codigo_sunat VARCHAR(4),
-	empresa CHAR(2) NOT NULL,
+	empresa CHAR(2) NOT NULL, -- CODIGO MIGRACION
 	FOREIGN KEY (empresa) REFERENCES empresas(empresa_id),
-	nombre_punto_emision VARCHAR(100) NOT NULL,
-	direccion VARCHAR(100),
+	nombre_punto_emision VARCHAR(200) NOT NULL,
+	direccion VARCHAR(200),
 	departamento CHAR(2) NOT NULL,
 	FOREIGN KEY (departamento) REFERENCES departamentos(departamento_id),
 	provincia CHAR(4) NOT NULL,
 	FOREIGN KEY (provincia) REFERENCES provincias(provincia_id),
 	distrito CHAR(6) NOT NULL,
 	FOREIGN KEY (distrito) REFERENCES distritos(distrito_id)
-) 
+)
 
 CREATE TABLE productos (
     producto_id UUID PRIMARY KEY,
@@ -117,4 +117,19 @@ CREATE TABLE distritos(
 	FOREIGN KEY (departamento) REFERENCES departamentos(departamento_id),
 	provincia VARCHAR(4) NOT NULL,
 	FOREIGN KEY (provincia) REFERENCES provincias(provincia_id)
+)
+
+-- TIPOS_OPERACION
+CREATE TABLE tipos_operacion (
+	tipo_operacion_id VARCHAR(4) PRIMARY KEY,
+	tipo_operacion_nombre VARCHAR(150)
+)
+
+-- TIPOS_TRIBUTO
+CREATE TABLE tipos_tributo(
+	tipo_tributo_id VARCHAR(4) PRIMARY KEY,
+	tipo_tributo_nombre VARCHAR(100),
+	nombre_sunat VARCHAR(100),
+	codigo_internacional VARCHAR(5),
+	codigo_categoria CHAR(1)
 )
