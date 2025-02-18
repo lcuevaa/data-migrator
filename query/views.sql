@@ -24,28 +24,30 @@ CREATE VIEW VIEW_EMPRESAS AS
         e.Direccion
     FROM Empresas AS e;
 
-CREATE VIEW VIEW_PRODUCTOS 
-AS
-	SELECT 
-		ArticuloId, 
-		CodigoInternoAux, 
-		CodigoSUNAT, 
-		EmpresaId, 
-		Descripcion, 
-		UnidadId, 
-		Peso, 
-		TipoAfectacionIgv
-	FROM           
-		dbo.ARTICULOS
+
+CREATE VIEW VIEW_PRODUCTOS AS
+SELECT 
+    A.ArticuloId, 
+    A.CodigoInternoAux, 
+    A.CodigoSUNAT, 
+    E.CodigoMigracion as EmpresaId, 
+    A.Descripcion, 
+    U.Acronimo as UnidadId, 
+    A.Peso, 
+    A.TipoAfectacionIgv
+FROM dbo.ARTICULOS A
+	INNER JOIN dbo.EMPRESAS E ON A.EmpresaId = E.EmpresaId
+	INNER JOIN dbo.UNIDADES_MEDIDA U ON A.UnidadCompra = U.UnidadId 
+	AND A.UnidadId = U.UnidadId;
+
 
 CREATE VIEW VIEW_UNIDADMEDIDA 
 AS
-	SELECT 
-		UnidadId,
-		Nombre,
-		CodigoInternacional
-	FROM           
-		dbo.UNIDADES_MEDIDA
+SELECT 
+    Acronimo, 
+    Nombre, 
+    ISNULL(CodigoInternacional, 'NIU') AS CodigoInternacional
+FROM dbo.UNIDADES_MEDIDA;
 
 
 CREATE VIEW VIEW_AFECTACION_IGV
@@ -79,10 +81,10 @@ AS
 
 
 
-CREATE VIEW VIEW_CONTRIBUYENTE
+ALTER VIEW VIEW_CONTRIBUYENTE
 AS
 	SELECT 
-		ClienteId,
+		Codigo,
 		TipoIdentificacion,
 		NroDocumento,
 		NombreCliente,
@@ -94,8 +96,7 @@ AS
 		Email_1
 	FROM           
 		dbo.CLIENTES
-
-
+		
 -- Vistas de tipos de identificacion
 CREATE VIEW VIEW_TIPOS_IDENTIFICACION
 AS

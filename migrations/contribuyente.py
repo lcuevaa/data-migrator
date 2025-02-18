@@ -17,13 +17,13 @@ def migrate_contribuyentes():
     insert_query ="""
         INSERT INTO contribuyentes (
             contribuyente_id,
-            tipo_identificacion_id,
+            tipo_identificacion,
             nro_identificacion,
             nombre_contribuyente,
             direccion,
-            departamento_id,
-            provincia_id,
-            distrito_id ,
+            departamento,
+            provincia,
+            distrito,
             urbanizacion,
             email
             )
