@@ -23,9 +23,6 @@ CREATE TABLE tipos_documento_tributarios (
     nombre_documento VARCHAR(150) NOT NULL
 );
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 -- Tabla empresas
 CREATE TABLE empresas(
 	empresa_id CHAR(2) PRIMARY KEY,
@@ -83,12 +80,6 @@ CREATE TABLE contribuyentes (
     FOREIGN KEY (provincia_id) REFERENCES provincia(id),
     FOREIGN KEY (distrito_id) REFERENCES distrito(id)
 );
-
-
-=======
->>>>>>> 0270efcaeab4523f57690fedd1edd3a1291eeccb
-=======
->>>>>>> 0270efcaeab4523f57690fedd1edd3a1291eeccb
 -- Tipos de identificacion
 CREATE TABLE tipos_identificacion(
 	tipo_identificacion_id VARCHAR(2) PRIMARY KEY,
@@ -119,8 +110,6 @@ CREATE TABLE distritos(
 	FOREIGN KEY (provincia) REFERENCES provincias(provincia_id)
 )
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 -- TIPOS_OPERACION
 CREATE TABLE tipos_operacion (
 	tipo_operacion_id VARCHAR(4) PRIMARY KEY,
@@ -134,9 +123,6 @@ CREATE TABLE tipos_tributo(
 	nombre_sunat VARCHAR(100),
 	codigo_internacional VARCHAR(5),
 	codigo_categoria CHAR(1)
-=======
-=======
->>>>>>> 0270efcaeab4523f57690fedd1edd3a1291eeccb
 
 -- Tabla empresas
 CREATE TABLE empresas(
@@ -196,8 +182,4 @@ CREATE TABLE contribuyentes (
 	FOREIGN KEY (distrito) REFERENCES distritos(distrito_id),
     urbanizacion VARCHAR(100),
     email VARCHAR(100)
-<<<<<<< HEAD
->>>>>>> 0270efcaeab4523f57690fedd1edd3a1291eeccb
-=======
->>>>>>> 0270efcaeab4523f57690fedd1edd3a1291eeccb
 )
