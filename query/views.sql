@@ -36,11 +36,11 @@ SELECT
     A.Peso, 
     A.TipoAfectacionIgv
 FROM dbo.ARTICULOS A
-	INNER JOIN dbo.EMPRESAS E ON A.EmpresaId = E.EmpresaId
-	INNER JOIN dbo.UNIDADES_MEDIDA U ON A.UnidadCompra = U.UnidadId 
-	AND A.UnidadId = U.UnidadId;
+INNER JOIN dbo.EMPRESAS E ON A.EmpresaId = E.EmpresaId
+INNER JOIN dbo.UNIDADES_MEDIDA U ON A.UnidadId = U.UnidadId
 
 
+-- hay 22 registros pero solo reconoce 21 hay conflicto en id
 CREATE VIEW VIEW_UNIDADMEDIDA 
 AS
 SELECT 
@@ -80,7 +80,7 @@ AS
 		dbo.TIPOS_DOCUMENTO
 
 
-
+-- El mismo problema que unidadMedida
 ALTER VIEW VIEW_CONTRIBUYENTE
 AS
 	SELECT 
