@@ -68,7 +68,7 @@ CREATE TABLE contribuyentes (
     contribuyente_id VARCHAR(15) PRIMARY KEY,
     tipo_identificacion_id INT,
     nro_identificacion VARCHAR(11),
-    nombre_contribuyente VARCHAR(150),
+    nombre_contribuyente VARCHAR(150),	
     direccion VARCHAR(150),
     departamento CHAR(2),
     provincia CHAR(4),

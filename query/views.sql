@@ -84,7 +84,7 @@ AS
 -- hay 39080 registros solo falta 1 pipipi
 ALTER VIEW VIEW_CONTRIBUYENTE
 SELECT 
-    CONCAT(left(ClienteId,1),TipoIdentificacion, ISNULL(NroDocumento,'00000000'), 
+    CONCAT(left(ClienteId,2),TipoIdentificacion, ISNULL(NroDocumento,'00000000'), 
            RIGHT('00' + CAST(ROW_NUMBER() OVER (
                 PARTITION BY TipoIdentificacion, NroDocumento 
                 ORDER BY (SELECT NULL)
