@@ -1,17 +1,18 @@
-CREATE VIEW VIEW_PUNTOEMISION
+-- VIEW_PUNTOEMISION
+CREATE VIEW VIEW_SUCURSAL_NEW
 AS
-	SELECT  
-			RIGHT('0000' + CAST(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS VARCHAR(4)), 4) AS SucursalId,  -- Genera el id secuencial como CHAR(2)
-			s.CodigoPuntoEmisionSUNAT, 
-			e.CodigoMigracion,
-			s.NombreComercial, 
-			s.Direccion, 
-			s.Departamento, 
-			s.Provincia, 
-			s.Distrito
-	FROM SUCURSALES as s
-	JOIN EMPRESAS AS e
-	ON s.EmpresaId = e.EmpresaId
+	SELECT
+		vs.CodigoSucursal, 
+		s.CodigoPuntoEmisionSUNAT, 
+		vs.CodEmpresa, 
+		vs.NombreComercial, 
+		vs.Direccion, 
+		s.Departamento, 
+		s.Provincia, 
+		s.Distrito
+	FROM VIEW_SUCURSALES AS vs
+	INNER JOIN SUCURSALES AS s
+	ON vs.SucursalId = s.SucursalId
 
 
 -- Vista empresas

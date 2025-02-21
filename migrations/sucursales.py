@@ -5,7 +5,7 @@ def migrate_sucursales():
     print("Migrando vista PUNTO DE EMISION (SUCURSALES)...")
 
     # Consulta de datos en SQL Server
-    sql_query = "SELECT * FROM VIEW_PUNTOEMISION"
+    sql_query = "SELECT * FROM VIEW_SUCURSAL_NEW"
     rows = fetch_sql_data(sql_query)
 
     if not rows:

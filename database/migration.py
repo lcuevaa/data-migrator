@@ -21,7 +21,7 @@ def migrate_data():
     # migrate_tipo_afectacionIgv()
     # migrate_forma_pago()
     # migrate_tipos_documento_tributarios()  # Comentado en ambos casos, pero puedes descomentarlo si lo deseas
-    migrate_contribuyentes()  # Faltaba crear la tabla en la bd
+    migrate_contribuyentes() 
     # migrate_unidades_medida()
     # migrate_tipos_identificacion()
     # migrate_tipos_operacion()
