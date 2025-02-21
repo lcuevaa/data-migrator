@@ -80,22 +80,25 @@ AS
 		dbo.TIPOS_DOCUMENTO
 
 
--- El mismo problema que unidadMedida
+-- hay 39080 registros solo falta 1 pipipi
 ALTER VIEW VIEW_CONTRIBUYENTE
-AS
-	SELECT 
-		Codigo,
-		TipoIdentificacion,
-		NroDocumento,
-		NombreCliente,
-		DireccionCliente,
-		Departamento,
-		Provincia,
-		Distrito,
-		Urbanizacion,
-		Email_1
-	FROM           
-		dbo.CLIENTES
+SELECT 
+    CONCAT(left(ClienteId,1),TipoIdentificacion, ISNULL(NroDocumento,'00000000'), 
+           RIGHT('00' + CAST(ROW_NUMBER() OVER (
+                PARTITION BY TipoIdentificacion, NroDocumento 
+                ORDER BY (SELECT NULL)
+           ) AS VARCHAR), 2)
+    ) AS Codigo,
+    TipoIdentificacion,  
+    ISNULL(NroDocumento, 'NIU') AS nro_identificacion,
+    ISNULL(NombreCliente, 'NIU') AS nombre_contribuyente,
+    ISNULL(DireccionCliente, 'NIU') AS direccion,
+    Departamento ,
+    Provincia,
+    Distrito,
+    ISNULL(Urbanizacion, 'NIU') AS urbanizacion,
+    ISNULL(Email_1, 'NIU') AS email
+FROM dbo.CLIENTES;
 		
 -- Vistas de tipos de identificacion
 CREATE VIEW VIEW_TIPOS_IDENTIFICACION

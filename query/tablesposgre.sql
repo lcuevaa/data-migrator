@@ -63,22 +63,21 @@ CREATE TABLE productos (
     FOREIGN KEY (tipo_afectacion_id) REFERENCES tipo_afectacion_impuesto(id) 
 );
 
-
+-- 39080 registros
 CREATE TABLE contribuyentes (
     contribuyente_id VARCHAR(15) PRIMARY KEY,
-    tipo_identificacion_id INT NOT NULL,
-    nro_identificacion VARCHAR(11) NOT NULL,
-    nombre_contribuyente VARCHAR(150) NOT NULL,
-    direccion VARCHAR(150) NOT NULL,
-    departamento_id INT NOT NULL,
-    provincia_id INT NOT NULL,
-    distrito_id INT NOT NULL,
+    tipo_identificacion_id INT,
+    nro_identificacion VARCHAR(11),
+    nombre_contribuyente VARCHAR(150),
+    direccion VARCHAR(150),
+    departamento CHAR(2),
+    provincia CHAR(4),
+    distrito CHAR(6),
     urbanizacion VARCHAR(100),
     email VARCHAR(100),
-    FOREIGN KEY (tipo_identificacion_id) REFERENCES tipos_identificacion(id),
-    FOREIGN KEY (departamento_id) REFERENCES departamento(id),
-    FOREIGN KEY (provincia_id) REFERENCES provincia(id),
-    FOREIGN KEY (distrito_id) REFERENCES distrito(id)
+    FOREIGN KEY (departamento) REFERENCES departamentos(departamento_id),
+    FOREIGN KEY (provincia) REFERENCES provincias(provincia_id),
+    FOREIGN KEY (distrito) REFERENCES distritos(distrito_id)
 );
 -- Tipos de identificacion
 CREATE TABLE tipos_identificacion(
@@ -183,3 +182,5 @@ CREATE TABLE contribuyentes (
     urbanizacion VARCHAR(100),
     email VARCHAR(100)
 )
+
+-- MotivoNotaCreditoDebito esperando que el profe envíe el script

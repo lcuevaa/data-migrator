@@ -18,18 +18,18 @@ def migrate_data():
     # Migrar cada tabla/vista de forma independiente
     
     # migraciones comentadas para que puedas decidir qué ejecutar
-    migrate_tipo_afectacionIgv()
-    migrate_forma_pago()
-    migrate_tipos_documento_tributarios()  # Comentado en ambos casos, pero puedes descomentarlo si lo deseas
+    # migrate_tipo_afectacionIgv()
+    # migrate_forma_pago()
+    # migrate_tipos_documento_tributarios()  # Comentado en ambos casos, pero puedes descomentarlo si lo deseas
     migrate_contribuyentes()  # Faltaba crear la tabla en la bd
-    migrate_unidades_medida()
-    migrate_tipos_identificacion()
-    migrate_tipos_operacion()
-    migrate_departamentos()
-    migrate_provincias()
-    migrate_distritos()
-    migrate_empresas()
-    migrate_productos()  # Puede ser importante para tu flujo de migración
-    migrate_sucursales()  # Esta línea está en ambos bloques, por lo que no se pierde
+    # migrate_unidades_medida()
+    # migrate_tipos_identificacion()
+    # migrate_tipos_operacion()
+    # migrate_departamentos()
+    # migrate_provincias()
+    # migrate_distritos()
+    # migrate_empresas()
+    # migrate_productos()  # Puede ser importante para tu flujo de migración
+    # migrate_sucursales()  # Esta línea está en ambos bloques, por lo que no se pierde
 
     print("Migración de datos finalizada.")
