@@ -30,6 +30,6 @@ def migrate_data():
     # migrate_distritos()
     # migrate_empresas()
     # migrate_productos()  # Puede ser importante para tu flujo de migración
-    migrate_sucursales()  # Esta línea está en ambos bloques, por lo que no se pierde
+    # migrate_sucursales()  # Esta línea está en ambos bloques, por lo que no se pierde
 
     print("Migración de datos finalizada.")
